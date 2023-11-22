@@ -15,9 +15,9 @@ df_intervenants = pd.read_csv('table_intervenants_finale.csv')
 df_liaison = pd.read_csv('table_de_liaison.csv')
 df_recommandation_basic = pd.read_csv('df_recommandation_basic.csv')
 
-#Création d'une bare laterale (st.sidebar()) contenant un menu déroulant (st.selectbox()) de 3 pages : "Acceuil", "Système de recommandation", "Test")
+#Création d'une bare laterale (st.sidebar()) contenant un menu déroulant (st.selectbox()) de 4 pages : "Acceuil", "Système de recommandation", "Détails intervenants", "Détails films")
 with st.sidebar.title("Navigation") :
-        selection = st.sidebar.selectbox("Sélectionnez une page", ["Acceuil", "Système de recommandation", "Test"])
+        selection = st.sidebar.selectbox("Sélectionnez une page", ["Acceuil", "Système de recommandation", "Détails intervenants", "Détails films"])
 
 #Page "Acceuil" :
 if selection == "Acceuil" :
@@ -111,6 +111,10 @@ elif selection == "Système de recommandation" :
 
                         with reco_basic_1 :
 
+                                if st.button("Aller vers Détails films") :
+                                        selection = "Détails films"
+                                        st.experimental_rerun()
+
                                 title_reco_basic_1 = df_recommandation_basic_film.iloc[0, 2]
                                 bouton_reco_basic_1 = st.button(label = title_reco_basic_1)
 
@@ -154,6 +158,10 @@ elif selection == "Système de recommandation" :
                         elif bouton_reco_basic_3 :
                                 st.write('Test 3')
 
-elif selection == "Test" :
+elif selection == "Détails intervenants" :
 
-        st.write('Test')
+        st.write("Détails intervenants")
+
+elif selection == "Détails films" :
+
+        st.write("Détails films")
